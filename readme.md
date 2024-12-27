@@ -10,3 +10,40 @@ Utility types in Typescript are some predefined generic types that can be used t
 - **Extract**: The opposite to Exclude is Extract utitlity type that allows you to pick a or multiple members from an union.
 - **ReturnType**: ReturnType utility type lets you to extract the return type of a function type. It takes a function type as an argument and returns the value type that the function returns.
 - **Awaited**: It extracts the resolved value of a Promise type or recursively resolves nested Promise types.
+
+## UnionType v/s IntersectionType
+**Union Type**
+
+A union type represents a value that can be one of several specified types. It is defined using the **|** (pipe) operator.
+- Union types are useful for cases where a variable might hold values of different types, and you want to restrict them to specific options.
+```javascript
+type StringOrNumber = string | number;
+
+let value: StringOrNumber;
+
+value = "Hello"; // Valid
+value = 42;      // Valid
+value = true;    // Error: 'boolean' is not assignable to 'string | number'
+
+```
+
+**Intersection Type**
+
+An intersection type combines multiple types into one. A value of an intersection type must satisfy all the specified types simultaneously. It is defined using the **&** (ampersand) operator.
+- Intersection types are useful when you want to enforce that a value satisfies multiple type constraints at the same time.
+```javascript
+type Person = { name: string };
+type Employee = { employeeId: number };
+
+type EmployeeDetails = Person & Employee;
+
+let employee: EmployeeDetails = {
+  name: "John Doe",
+  employeeId: 1234,
+}; // Valid
+
+let person: Person = { name: "Jane" }; // Valid
+// person.employeeId = 123; // Error: 'employeeId' does not exist on type 'Person'
+
+
+```
