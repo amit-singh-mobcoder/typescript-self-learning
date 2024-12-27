@@ -29,3 +29,5 @@ function isAdminAccount(account : User | Admin) {
         return account.isAdmin;
     }
 }
+
+export {}
